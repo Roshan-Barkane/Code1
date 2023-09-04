@@ -9,6 +9,7 @@ class Home extends StatefulWidget {
   var city, decs, weathericon;
   var temp, speed;
   var humidity;
+  var City;
 
   Home(this.city, this.decs, this.temp, this.speed, this.humidity,
       this.weathericon,
@@ -20,6 +21,7 @@ class Home extends StatefulWidget {
 
 class _HomeState extends State<Home> {
   TextEditingController searchController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     var city_name = ["Mumbai", "Delhi", "Chennai", "Indore", "Bhopal"];
@@ -55,9 +57,10 @@ class _HomeState extends State<Home> {
                     children: [
                       GestureDetector(
                         onTap: () {
-                          Navigator.of(context).pushNamed(MaterialPageRoute(
-                              builder: (context) =>
-                                  Loading(searchController.text)).toString());
+                          Navigator.of(context).pushReplacement(
+                              MaterialPageRoute(
+                                  builder: (context) =>
+                                      Loading(searchController.text)));
                         },
                         child: Container(
                           margin: const EdgeInsets.fromLTRB(4, 0, 9, 0),
@@ -138,9 +141,10 @@ class _HomeState extends State<Home> {
                             children: [
                               const Icon(
                                 Icons.thermostat_auto_sharp,
+                                size: 40,
                               ),
                               const SizedBox(
-                                height: 35,
+                                height: 30,
                               ),
                               Row(
                                 mainAxisAlignment: MainAxisAlignment.center,
@@ -179,9 +183,15 @@ class _HomeState extends State<Home> {
                           child: Column(
                             children: [
                               const Row(
-                                children: [Icon(Icons.wind_power_sharp)],
+                                children: [
+                                  Icon(
+                                    Icons.wind_power_sharp,
+                                    size: 30,
+                                    color: Color.fromARGB(255, 255, 64, 0),
+                                  )
+                                ],
                               ),
-                              const SizedBox(height: 7),
+                              //const SizedBox(height: 7),
                               Text(
                                 widget.speed.toString().substring(0, 4),
                                 style: const TextStyle(
@@ -210,9 +220,15 @@ class _HomeState extends State<Home> {
                           child: Column(
                             children: [
                               const Row(
-                                children: [Icon(Icons.water_drop_sharp)],
+                                children: [
+                                  Icon(
+                                    Icons.water_drop_sharp,
+                                    size: 30,
+                                    color: Color.fromARGB(255, 8, 0, 255),
+                                  )
+                                ],
                               ),
-                              const SizedBox(height: 7),
+                              const SizedBox(height: 1),
                               Text(
                                 widget.humidity.toString(),
                                 style: const TextStyle(
